@@ -106,5 +106,4 @@ public class PeminjamanController : ControllerBase
         
         return NoContent(); 
     }
-    //agar bisa di-PR
 }
