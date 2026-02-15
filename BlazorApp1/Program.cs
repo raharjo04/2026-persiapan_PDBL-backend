@@ -39,6 +39,8 @@ app.MapRazorComponents<App>()
 
 app.MapControllers();
 
+
+
 app.UseCors(policy => policy.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());
 
 app.Run();
