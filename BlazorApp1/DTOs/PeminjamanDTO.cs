@@ -14,6 +14,7 @@ public record PeminjamanRequestDTO(
 
 public record PeminjamanResponseDTO(
     int Id, 
+    int RuanganId,
     string NamaRuangan, 
     string NamaPeminjam, 
     DateTime TanggalPinjam, 
