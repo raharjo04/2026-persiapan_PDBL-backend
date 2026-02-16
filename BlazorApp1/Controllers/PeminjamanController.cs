@@ -123,6 +123,20 @@ public class PeminjamanController : ControllerBase
         if (!validStatus.Contains(request.Status)) 
             return BadRequest("Status tidak valid. Gunakan: Menunggu, Disetujui, atau Ditolak.");
 
+        if (request.Status == "Disetujui"){
+            var konflik = await _context.Peminjamans.AnyAsync(p =>
+                p.Id != peminjaman.Id &&
+                p.RuanganId == peminjaman.RuanganId &&
+                p.TanggalPinjam.Date == peminjaman.TanggalPinjam.Date &&
+                p.Status == "Disetujui"
+            );
+
+            if (konflik)
+            {
+                return BadRequest("Ruangan sudah dipinjam pada tanggal tersebut.");
+            }
+        }
+
         peminjaman.Status = request.Status;
         await _context.SaveChangesAsync();
         
